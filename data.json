@@ -1,0 +1,52 @@
+{
+    "clubInfo": {
+        "name": "LUMINOUS JLT DUBAI TOASTMASTERS CLUB",
+        "number": "CB-28677185",
+        "area": "22",
+        "division": "F",
+        "district": "127"
+    },
+    "meetingInfo": {
+        "number": "33",
+        "date": "2025-03-17",
+        "timeStart": "6.45 PM",
+        "timeEnd": "9.15 PM",
+        "location": "Pullman Hotel, Cluster T, JLT 2nd Floor - Meeting Room"
+    },
+    "theme": {
+        "lines": [
+            {
+                "text": "ABSORB",
+                "size": 44,
+                "color": "#FFDF6C",
+                "offset": {"x": 0, "y": 0},
+                "hasDecoration": true,
+                "decoration": {"type": "circles", "position": "topRight"}
+            },
+            {
+                "text": "RADIATE",
+                "size": 44,
+                "color": "#FFDF6C",
+                "offset": {"x": 0, "y": 60},
+                "hasDecoration": true,
+                "decoration": {"type": "circle", "position": "right"}
+            },
+            {
+                "text": "BE LUMINOUS",
+                "size": 52,
+                "color": ["WHITE", "#FFDF6C"],
+                "offset": {"x": 0, "y": 160},
+                "hasDecoration": true,
+                "decoration": {"type": "rays", "position": "rightBottom"}
+            }
+        ]
+    },
+    "tmod": {
+        "name": "SEBASTIAN JOSEPH",
+        "photoPath": "sebastian_photo.jpg"
+    },
+    "contactPersons": [
+        {"name": "Anagha", "phone": "+971559307918"},
+        {"name": "Karima", "phone": "+971561582012"}
+    ]
+}

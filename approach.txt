@@ -1,0 +1,60 @@
+FUNCTION GenerateToastmastersFlyer(clubInfo, meetingInfo, theme, tmod, contactPersons)
+    // 1. Initialize Canvas and Background
+    canvas = CREATE_CANVAS(1200, 675)  // 16:9 ratio
+    SET_BACKGROUND(canvas, GRADIENT("#8B1A60", "#162F50"))  // Purple to blue gradient
+    
+    // 2. Add Decorative Elements
+    FOR each side (left, right)
+        DRAW_DOT_PATTERN(side, "#FFDF6C")  // Yellow dots pattern
+    END FOR
+    
+    // 3. Add Header Section
+    ADD_TEXT(canvas, clubInfo.name, POSITION_TOP_CENTER, FONT("Arial", 36, "BOLD", "WHITE"))
+    ADD_TEXT(canvas, FormatClubDetails(clubInfo), POSITION_BELOW_CLUB_NAME, FONT("Arial", 18, "NORMAL", "WHITE"))
+    ADD_TEXT(canvas, "MEETING NO. " + meetingInfo.number, POSITION_BELOW_DETAILS, FONT("Arial", 20, "BOLD", "WHITE"))
+    
+    // 4. Add Toastmasters Logo
+    ADD_IMAGE(canvas, "toastmasters_logo.png", POSITION_TOP_RIGHT)
+    
+    // 5. Add TMOD Section
+    ADD_IMAGE(canvas, tmod.photoPath, POSITION_LEFT_SIDE, SIZE(300, 400))
+    ADD_LABEL(canvas, "TMOD", POSITION_OVER_PHOTO_BOTTOM, FONT("Arial", 18, "BOLD", "WHITE"))
+    ADD_TEXT(canvas, "TM " + tmod.name, POSITION_BELOW_PHOTO, FONT("Arial", 24, "BOLD", "WHITE"))
+    
+    // 6. Add Theme Section
+    FOR each themeLine in theme.lines
+        ADD_TEXT(canvas, themeLine.text, 
+                POSITION_RIGHT_SIDE.withOffset(themeLine.offset), 
+                FONT("Arial", themeLine.size, "BOLD", themeLine.color))
+        
+        IF themeLine.hasDecoration
+            ADD_DECORATION(canvas, themeLine.decoration, POSITION_NEAR(themeLine))
+        END IF
+    END FOR
+    
+    // 7. Add Meeting Info Section
+    ADD_TEXT(canvas, FormatDateTime(meetingInfo.date, meetingInfo.timeStart, meetingInfo.timeEnd), 
+            POSITION_BOTTOM_SECTION, FONT("Arial", 20, "NORMAL", "WHITE"))
+    ADD_SEPARATOR_LINE(canvas, POSITION_BELOW_DATETIME)
+    ADD_TEXT(canvas, meetingInfo.location, POSITION_BELOW_SEPARATOR, FONT("Arial", 20, "NORMAL", "WHITE"))
+    ADD_SEPARATOR_LINE(canvas, POSITION_BELOW_LOCATION)
+    
+    // 8. Add Contact Information
+    contactInfo = ""
+    FOR each person in contactPersons
+        contactInfo += "TM " + person.name + " " + person.phone + "  "
+    END FOR
+    ADD_TEXT(canvas, contactInfo, POSITION_BOTTOM, FONT("Arial", 16, "NORMAL", "WHITE"))
+    
+    // 9. Export the final flyer
+    RETURN EXPORT_IMAGE(canvas, "flyer.png")
+END FUNCTION
+
+// Helper Functions
+FUNCTION FormatClubDetails(clubInfo)
+    RETURN "Club No " + clubInfo.number + " Area " + clubInfo.area + " Division " + clubInfo.division + " District " + clubInfo.district
+END FUNCTION
+
+FUNCTION FormatDateTime(date, startTime, endTime)
+    RETURN date.format("dddd, DD MMMM YYYY") + ", " + startTime + " - " + endTime
+END FUNCTION

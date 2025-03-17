@@ -1,0 +1,52 @@
+{
+    "clubInfo": {
+        "name": "",
+        "number": "",
+        "area": "",
+        "division": "",
+        "district": ""
+    },
+    "meetingInfo": {
+        "number": "",
+        "date": "",
+        "timeStart": "",
+        "timeEnd": "",
+        "location": ""
+    },
+    "theme": {
+        "lines": [
+            {
+                "text": "",
+                "size": 44,
+                "color": "#FFDF6C",
+                "offset": {"x": 0, "y": 0},
+                "hasDecoration": true,
+                "decoration": {"type": "circles", "position": "topRight"}
+            },
+            {
+                "text": "",
+                "size": 44,
+                "color": "#FFDF6C",
+                "offset": {"x": 0, "y": 30},
+                "hasDecoration": true,
+                "decoration": {"type": "circle", "position": "right"}
+            },
+            {
+                "text": "",
+                "size": 52,
+                "color": "#FFDF6C",
+                "offset": {"x": 0, "y": 60},
+                "hasDecoration": true,
+                "decoration": {"type": "rays", "position": "rightBottom"}
+            }
+        ]
+    },
+    "tmod": {
+        "name": "",
+        "photoPath": ""
+    },
+    "contactPersons": [
+        {"name": "", "phone": ""},
+        {"name": "", "phone": ""}
+    ]
+}

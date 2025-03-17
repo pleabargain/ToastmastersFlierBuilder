@@ -1,0 +1,74 @@
+DATA ENTRY APPROACH FOR TOASTMASTERS FLIER BUILDER
+
+1. CORE FUNCTIONALITY
+   - Load existing JSON files via file input
+   - Edit all flier data fields through form interface
+   - Upload and preview TMOD photos (local files and web URLs)
+   - Save data as JSON files with manual download
+   - Validate JSON structure before saving
+   - Preview flier in separate tab
+   - Log all errors to dataentry-errorlog
+
+2. UI COMPONENTS
+   - Simple, clean interface
+   - File operations section (load/save buttons) accessible at all times
+   - Club information form section
+   - Meeting information form section
+   - Theme section (maximum 3 theme lines)
+   - TMOD section with photo upload (local files or web URLs)
+   - Contact persons section
+   - Preview button to open flier in separate tab
+   - Error display area
+
+3. DATA HANDLING
+   - JSON parsing and validation
+   - Form data collection and validation
+   - Image file handling (upload, preview, URL support)
+   - File naming based on club name and date
+
+4. FILE OPERATIONS
+   - Load JSON: File input element + FileReader API
+   - Save JSON: Generate downloadable file with Blob and URL.createObjectURL
+   - Image handling: FileReader for preview + support for web URLs
+
+5. ERROR HANDLING & LOGGING
+   - Client-side validation for all form fields
+   - JSON structure validation
+   - Error logging system with timestamps
+   - User-friendly error messages
+   - Log to dataentry-errorlog file via download mechanism
+
+6. CODE STRUCTURE
+   - HTML: Semantic structure with form elements
+   - CSS: Minimal styling for usability
+   - JavaScript:
+     * EventListeners for user interactions
+     * FileHandler module for file operations
+     * FormHandler module for form data processing
+     * ValidationHandler for input validation
+     * ErrorLogger for error handling and logging
+     * ImageHandler for photo uploads and URL handling
+     * PreviewHandler for opening preview in separate tab
+
+7. IMPLEMENTATION APPROACH
+   - Create JSON files first (LUMINOUS-JLT-DUBAI.json, blank-club.json, DIC2-dubai.json)
+   - Implement basic HTML structure
+   - Add core JavaScript functionality
+   - Implement image handling
+   - Add preview functionality
+   - Implement error handling and validation
+   - Test and refine
+
+8. BROWSER COMPATIBILITY
+   - Target modern browsers only
+   - Use modern JavaScript features (ES6+)
+   - Leverage modern browser APIs for file handling
+
+9. USER WORKFLOW
+   - Open data-entry.html
+   - Load existing JSON or start with blank form
+   - Fill in all form sections
+   - Upload images or provide URLs
+   - Save data at any point
+   - Preview flier in separate tab
+   - All errors are logged and displayed

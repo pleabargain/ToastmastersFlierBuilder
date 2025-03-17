@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toastmasters Flier</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Flier container */
+        #flier-container {
+            width: 1200px;
+            height: 675px;
+            margin: 20px auto;
+            position: relative;
+            overflow: visible;
+            background: linear-gradient(135deg, #8B1A60 0%, #162F50 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header section */
+        .flier-header {
+            padding: 20px 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .club-name {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        .club-details {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .meeting-number {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .tm-logo {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        /* Main content */
+        .flier-content {
+            flex: 1;
+            display: flex;
+            position: relative;
+            padding: 0 40px;
+        }
+        
+        /* TMOD section */
+        .tmod-section {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .tmod-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tmod-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .tmod-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+        
+        .tmod-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* Theme section */
+        .theme-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .theme-line {
+            font-weight: bold;
+            margin: 5px 0;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+            letter-spacing: -1px;
+        }
+        
+        /* Decorative elements */
+        .decoration-dots {
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .decoration-dots.left {
+            left: 0;
+            top: 0;
+            background-image: radial-gradient(circle, #FFDF6C 2px, transparent 3px);
+            background-size: 20px 20px;
+        }
+        
+        .decoration-dots.right {
+            right: 0;
+            top: 0;
+            background-image: radial-gradient(circle, #FFDF6C 2px, transparent 3px);
+            background-size: 20px 20px;
+        }
+        
+        /* Decorations for theme lines */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .decoration.circles.topRight {
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, #FFDF6C 4px, transparent 5px);
+            background-size: 30px 30px;
+            opacity: 0.7;
+        }
+        
+        .decoration.circle.right {
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border: 3px solid #FFDF6C;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        .decoration.rays.rightBottom {
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background-image: conic-gradient(from 0deg, transparent 0deg, #FFDF6C 10deg, transparent 20deg, #FFDF6C 30deg, transparent 40deg, #FFDF6C 50deg, transparent 60deg, #FFDF6C 70deg, transparent 80deg, #FFDF6C 90deg, transparent 100deg, #FFDF6C 110deg, transparent 120deg, #FFDF6C 130deg, transparent 140deg, #FFDF6C 150deg, transparent 160deg, #FFDF6C 170deg, transparent 180deg, #FFDF6C 190deg, transparent 200deg, #FFDF6C 210deg, transparent 220deg, #FFDF6C 230deg, transparent 240deg, #FFDF6C 250deg, transparent 260deg, #FFDF6C 270deg, transparent 280deg, #FFDF6C 290deg, transparent 300deg, #FFDF6C 310deg, transparent 320deg, #FFDF6C 330deg, transparent 340deg, #FFDF6C 350deg, transparent 360deg);
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+        
+        /* Footer section */
+        .flier-footer {
+            padding: 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .date-time, .location, .contact-info {
+            text-align: center;
+            margin: 5px 0;
+            font-size: 20px;
+        }
+        
+        .contact-info {
+            font-size: 16px;
+        }
+        
+        .separator {
+            width: 80%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 10px 0;
+        }
+        
+        /* Error log display */
+        #error-log {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 1200px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+        }
+        
+        #error-log.has-errors {
+            display: block;
+        }
+        
+        #error-log div {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+            font-family: monospace;
+            font-size: 14px;
+            color: #d32f2f;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            #flier-container {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .flier-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tmod-section, .theme-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main flier container -->
+    <div id="flier-container">
+        <!-- Content will be dynamically generated by JavaScript -->
+    </div>
+    
+    <!-- Error log container (hidden by default) -->
+    <div id="error-log"></div>
+    
+    <!-- Default data will be used only if no preview data exists -->
+    <script>
+        // Check if preview data exists in localStorage
+        const previewData = localStorage.getItem('previewData');
+        
+        if (!previewData) {
+            console.log('No preview data found, using default data');
+            
+            // Club Information
+            const clubInfo = {
+                name: "LUMINOUS JLT DUBAI TOASTMASTERS CLUB",
+                number: "CB-28677185",
+                area: "22",
+                division: "F",
+                district: "127"
+            };
+
+            // Meeting Information
+            const meetingInfo = {
+                number: "33",
+                date: "2025-03-17",
+                timeStart: "6.45 PM",
+                timeEnd: "9.15 PM",
+                location: "Pullman Hotel, Cluster T, JLT 2nd Floor - Meeting Room"
+            };
+
+            // Theme
+            const theme = {
+                lines: [
+                    {text: "ABSORB", size: 44, color: "#FFDF6C", offset: {x: 0, y: 0}, 
+                     hasDecoration: true, decoration: {type: "circles", position: "topRight"}},
+                    {text: "RADIATE", size: 44, color: "#FFDF6C", offset: {x: 0, y: 30}, 
+                     hasDecoration: true, decoration: {type: "circle", position: "right"}},
+                    {text: "BE LUMINOUS", size: 52, color: "#FFDF6C", offset: {x: 0, y: 60}, 
+                     hasDecoration: true, decoration: {type: "rays", position: "rightBottom"}}
+                ]
+            };
+
+            // Toastmaster of the Day
+            const tmod = {
+                name: "SEBASTIAN JOSEPH",
+                photoPath: "sebastian_photo.jpg"
+            };
+
+            // Contact Persons
+            const contactPersons = [
+                {name: "Anagha", phone: "+971559307918"},
+                {name: "Karima", phone: "+971561582012"}
+            ];
+            
+            console.log('Default data loaded successfully');
+        } else {
+            console.log('Preview data found, will be used by script.js');
+        }
+    </script>
+    
+    <!-- Include the main script -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toastmasters Flier Builder - Data Entry</title>
+    <style>
+        /* Basic styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .file-operations {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .file-operations-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .theme-line {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        
+        .contact-person {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .error-log {
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .error-message {
+            color: #f44336;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .success-message {
+            color: #4CAF50;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .color-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .color-input input[type="color"] {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- File Operations Section -->
+        <div class="file-operations">
+            <h1>Toastmasters Flier Builder</h1>
+            <div class="file-operations-buttons">
+                <button id="load-json">Load JSON</button>
+                <button id="save-json">Save JSON</button>
+                <button id="preview-flier">Preview Flier</button>
+                <button id="new-flier">New Flier</button>
+            </div>
+        </div>
+        
+        <input type="file" id="json-file-input" accept=".json" class="hidden">
+        
+        <!-- Club Information Section -->
+        <div class="section">
+            <h2>Club Information</h2>
+            <div class="form-group">
+                <label for="club-name">Club Name:</label>
+                <input type="text" id="club-name" name="club-name" required>
+            </div>
+            <div class="form-group">
+                <label for="club-number">Club Number:</label>
+                <input type="text" id="club-number" name="club-number" required>
+            </div>
+            <div class="form-group">
+                <label for="club-area">Area:</label>
+                <input type="text" id="club-area" name="club-area" required>
+            </div>
+            <div class="form-group">
+                <label for="club-division">Division:</label>
+                <input type="text" id="club-division" name="club-division" required>
+            </div>
+            <div class="form-group">
+                <label for="club-district">District:</label>
+                <input type="text" id="club-district" name="club-district" required>
+            </div>
+        </div>
+        
+        <!-- Meeting Information Section -->
+        <div class="section">
+            <h2>Meeting Information</h2>
+            <div class="form-group">
+                <label for="meeting-number">Meeting Number:</label>
+                <input type="text" id="meeting-number" name="meeting-number" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting-date">Date:</label>
+                <input type="date" id="meeting-date" name="meeting-date" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting-time-start">Start Time:</label>
+                <input type="text" id="meeting-time-start" name="meeting-time-start" placeholder="e.g. 6.45 PM" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting-time-end">End Time:</label>
+                <input type="text" id="meeting-time-end" name="meeting-time-end" placeholder="e.g. 9.15 PM" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting-location">Location:</label>
+                <input type="text" id="meeting-location" name="meeting-location" required>
+            </div>
+        </div>
+        
+        <!-- Theme Section -->
+        <div class="section">
+            <h2>Theme</h2>
+            <div id="theme-lines-container">
+                <!-- Theme lines will be added here dynamically -->
+                <div class="theme-line" data-index="0">
+                    <h3>Theme Line 1</h3>
+                    <div class="form-group">
+                        <label for="theme-text-0">Text:</label>
+                        <input type="text" id="theme-text-0" name="theme-text-0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-size-0">Font Size:</label>
+                        <input type="number" id="theme-size-0" name="theme-size-0" value="44" min="10" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-color-0">Color:</label>
+                        <div class="color-input">
+                            <input type="color" id="theme-color-0" name="theme-color-0" value="#FFDF6C" required>
+                            <input type="text" id="theme-color-text-0" name="theme-color-text-0" value="#FFDF6C" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Offset:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="theme-offset-x-0">X:</label>
+                                <input type="number" id="theme-offset-x-0" name="theme-offset-x-0" value="0" required>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="theme-offset-y-0">Y:</label>
+                                <input type="number" id="theme-offset-y-0" name="theme-offset-y-0" value="0" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-type-0">Decoration Type:</label>
+                        <select id="theme-decoration-type-0" name="theme-decoration-type-0">
+                            <option value="none">None</option>
+                            <option value="circles" selected>Circles</option>
+                            <option value="circle">Circle</option>
+                            <option value="rays">Rays</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-position-0">Decoration Position:</label>
+                        <select id="theme-decoration-position-0" name="theme-decoration-position-0">
+                            <option value="topRight" selected>Top Right</option>
+                            <option value="right">Right</option>
+                            <option value="rightBottom">Right Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="top">Top</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="theme-line" data-index="1">
+                    <h3>Theme Line 2</h3>
+                    <div class="form-group">
+                        <label for="theme-text-1">Text:</label>
+                        <input type="text" id="theme-text-1" name="theme-text-1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-size-1">Font Size:</label>
+                        <input type="number" id="theme-size-1" name="theme-size-1" value="44" min="10" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-color-1">Color:</label>
+                        <div class="color-input">
+                            <input type="color" id="theme-color-1" name="theme-color-1" value="#FFDF6C" required>
+                            <input type="text" id="theme-color-text-1" name="theme-color-text-1" value="#FFDF6C" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Offset:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="theme-offset-x-1">X:</label>
+                                <input type="number" id="theme-offset-x-1" name="theme-offset-x-1" value="0" required>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="theme-offset-y-1">Y:</label>
+                                <input type="number" id="theme-offset-y-1" name="theme-offset-y-1" value="30" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-type-1">Decoration Type:</label>
+                        <select id="theme-decoration-type-1" name="theme-decoration-type-1">
+                            <option value="none">None</option>
+                            <option value="circles">Circles</option>
+                            <option value="circle" selected>Circle</option>
+                            <option value="rays">Rays</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-position-1">Decoration Position:</label>
+                        <select id="theme-decoration-position-1" name="theme-decoration-position-1">
+                            <option value="topRight">Top Right</option>
+                            <option value="right" selected>Right</option>
+                            <option value="rightBottom">Right Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="top">Top</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="theme-line" data-index="2">
+                    <h3>Theme Line 3</h3>
+                    <div class="form-group">
+                        <label for="theme-text-2">Text:</label>
+                        <input type="text" id="theme-text-2" name="theme-text-2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-size-2">Font Size:</label>
+                        <input type="number" id="theme-size-2" name="theme-size-2" value="52" min="10" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-color-2">Color:</label>
+                        <div class="color-input">
+                            <input type="color" id="theme-color-2" name="theme-color-2" value="#FFDF6C" required>
+                            <input type="text" id="theme-color-text-2" name="theme-color-text-2" value="#FFDF6C" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Offset:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="theme-offset-x-2">X:</label>
+                                <input type="number" id="theme-offset-x-2" name="theme-offset-x-2" value="0" required>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="theme-offset-y-2">Y:</label>
+                                <input type="number" id="theme-offset-y-2" name="theme-offset-y-2" value="60" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-type-2">Decoration Type:</label>
+                        <select id="theme-decoration-type-2" name="theme-decoration-type-2">
+                            <option value="none">None</option>
+                            <option value="circles">Circles</option>
+                            <option value="circle">Circle</option>
+                            <option value="rays" selected>Rays</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme-decoration-position-2">Decoration Position:</label>
+                        <select id="theme-decoration-position-2" name="theme-decoration-position-2">
+                            <option value="topRight">Top Right</option>
+                            <option value="right">Right</option>
+                            <option value="rightBottom" selected>Right Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="top">Top</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TMOD Section -->
+        <div class="section">
+            <h2>Toastmaster of the Day</h2>
+            <div class="form-group">
+                <label for="tmod-name">Name:</label>
+                <input type="text" id="tmod-name" name="tmod-name" required>
+            </div>
+            <div class="form-group">
+                <label for="tmod-photo-type">Photo Source:</label>
+                <select id="tmod-photo-type" name="tmod-photo-type">
+                    <option value="local">Local File</option>
+                    <option value="url">Web URL</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+            <div class="form-group" id="tmod-photo-local-group">
+                <label for="tmod-photo-local">Upload Photo:</label>
+                <input type="file" id="tmod-photo-local" name="tmod-photo-local" accept="image/*">
+            </div>
+            <div class="form-group hidden" id="tmod-photo-url-group">
+                <label for="tmod-photo-url">Photo URL:</label>
+                <input type="url" id="tmod-photo-url" name="tmod-photo-url" placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="form-group">
+                <label for="tmod-photo-path">Photo Path:</label>
+                <input type="text" id="tmod-photo-path" name="tmod-photo-path" readonly>
+            </div>
+            <img id="tmod-photo-preview" class="image-preview" alt="TMOD Photo Preview">
+        </div>
+        
+        <!-- Contact Persons Section -->
+        <div class="section">
+            <h2>Contact Persons</h2>
+            <div id="contact-persons-container">
+                <!-- Contact persons will be added here dynamically -->
+                <div class="contact-person" data-index="0">
+                    <h3>Contact Person 1</h3>
+                    <div class="form-group">
+                        <label for="contact-name-0">Name:</label>
+                        <input type="text" id="contact-name-0" name="contact-name-0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone-0">Phone:</label>
+                        <input type="text" id="contact-phone-0" name="contact-phone-0" required>
+                    </div>
+                </div>
+                
+                <div class="contact-person" data-index="1">
+                    <h3>Contact Person 2</h3>
+                    <div class="form-group">
+                        <label for="contact-name-1">Name:</label>
+                        <input type="text" id="contact-name-1" name="contact-name-1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone-1">Phone:</label>
+                        <input type="text" id="contact-phone-1" name="contact-phone-1" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Error Log Section -->
+        <div id="error-log" class="error-log">
+            <h2>Error Log</h2>
+            <div id="error-log-content"></div>
+        </div>
+    </div>
+    
+    <!-- Include the data entry script -->
+    <script src="data-entry-script.js"></script>
+</body>
+</html>

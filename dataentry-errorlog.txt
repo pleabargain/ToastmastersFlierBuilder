@@ -1,0 +1,2 @@
+# Toastmasters Flier Builder - Data Entry Error Log
+# This file contains error logs from the data entry UI
